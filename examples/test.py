@@ -1,19 +1,10 @@
 from epistemon import Tensor
-from epistemon import Value
+from epistemon.math import MSE
 
-a = Tensor(
-    [[1, 2, 3],
-     [4, 5, 6],
-     [7, 8, 9]])
+a = Tensor([1, 2, 3])
+b = Tensor([4, 5, 6])
 
-b = Tensor(
-    [[11, 12, 13],
-     [14, 15, 16],
-     [17, 18, 19]])
-
-c = a @ b
-c.data()
+c = MSE(a, b)
+print(c)
 c.backward()
-
-a.grad()
-b.grad()
+b.data()

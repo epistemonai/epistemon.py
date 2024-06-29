@@ -1,5 +1,4 @@
 import math
-import numpy as np 
 
 class Value:
     def __init__(self, data, _children=(), _op='', label=''):
@@ -62,6 +61,15 @@ class Value:
         def backward():
             self.grad += (1.0 - tanh(out.data)**2) * out.grad
 
+        out._backward = backward
+        return out
+
+    def sigmoid(self):
+        ex = math.exp(-self.data)
+        out = Value(1.0/(1.0 + ex), (self,), "sigmoid")
+        def backward():
+            self.grad += ex/(1.0 + ex)**2 * out.grad
+        
         out._backward = backward
         return out
 

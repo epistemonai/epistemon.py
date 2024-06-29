@@ -1,3 +1,4 @@
+from epistemon.engine import Value
 
 def flatten_array(arr: list) -> list:
     flattened = []
@@ -12,3 +13,12 @@ def array_shape(arr: list) -> tuple:
         shape.append(len(arr))
         arr = arr[0]
     return tuple(shape)
+
+def MSE(P, Y) -> Value:
+    vectors_match(P, Y); return ((P - Y)**2).mean()
+
+def MAE(P, Y) -> Value:
+    vectors_match(P, Y); return (P - Y).abs().mean()
+
+def RMSE(P, Y) -> Value:
+    vectors_match(P, Y); return math.sqrt(((P - Y)**2).mean())
